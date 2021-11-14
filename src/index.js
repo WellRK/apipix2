@@ -21,7 +21,10 @@ connect()
   .then(() => {
     // TODO: Colocar essa conexão em outro lugar
     // Ou colocar dentro de uma função assincrona
-    app.listen(PORT);
+    app.listen(PORT, () => {
+      console.log("Servidor iniciado locaohost:3000" + PORT)
+
+    });
     console.log('Aplicação no Ar!')
     // Porta para acesso
   })
