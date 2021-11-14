@@ -2,6 +2,8 @@ import express from "express";
 import { routes } from "./routes";
 import { connect } from "./services/db";
 
+const PORT = process.env.PORT || 3000;
+
 const app = express();
 
 // Ler JSON
@@ -19,7 +21,7 @@ connect()
   .then(() => {
     // TODO: Colocar essa conexão em outro lugar
     // Ou colocar dentro de uma função assincrona
-    app.listen(3000);
+    app.listen(PORT);
     console.log('Aplicação no Ar!')
     // Porta para acesso
   })
