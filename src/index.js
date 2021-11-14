@@ -9,7 +9,7 @@ const app = express();
 // Ler JSON
 app.use(
   express.urlencoded({
-    extend: true,
+    extended: true,
   })
 );
 

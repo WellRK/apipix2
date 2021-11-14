@@ -30,6 +30,7 @@ export const register = async (req, res, next) => {
     email,
     password: passwordHash,
     cpf,
+    moeda: 'CUSD'
   });
 
   await User.create(celo);
@@ -71,3 +72,14 @@ export const login = async (req, res) => {
 
   res.status(200).json({ message: "Login efetuado com sucesso!", token });
 };
+
+export const moeda = async (req, res) => {
+  // Passe moeda e cpf no body
+
+  if (req.body.moeda != 'CUSD' && req.body.moeda != 'MCO2') return res.status(400).json({ message: `Moeda Inválida`})
+  const user = await User.findOne({ cpf: req.body.cpf });
+
+  await User.updateOne({ cpf: req.body.cpf }, { $set: { moeda: req.body.moeda } })
+
+  return res.status(201).json({ message: `Moeda padrão alterada para ${req.body.moeda}`})
+}
