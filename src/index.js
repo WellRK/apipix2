@@ -1,6 +1,6 @@
 import express from "express";
 import { routes } from "./routes";
-import { connect } from "./services/db";
+import { connect1 } from "./services/db";
 
 const PORT = process.env.PORT || 3000;
 
@@ -17,7 +17,7 @@ app.use(express.json());
 
 app.use("/v1", routes);
 
-connect()
+connect1()
   .then(() => {
     // TODO: Colocar essa conexão em outro lugar
     // Ou colocar dentro de uma função assincrona
