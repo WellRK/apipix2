@@ -20,10 +20,6 @@ const UserSchema = mongoose.Schema(
       type: String,
       required: false,
     },
-    moeda: {
-      type: String,
-      required: false
-    }
   },
   {
     timestamps: true,
