@@ -1,7 +1,9 @@
 import { PixSchema } from "../schemas/pixSchema";
 import User from "../models/User";
+import Saldo from "../models/Saldo";
 import Transaction from "../models/Transaction";
 import axios from "axios";
+import { updateSaldo } from "./saldoController";
 
 export const pix = async (req, res) => {
     // Deve receber amount e cpf
@@ -18,6 +20,8 @@ export const pix = async (req, res) => {
         axios.get(`https://api.coinsamba.com/v0/bestPrice?refference=quote&side=buy&amount=${req.body.amount}&base=USDT&quote=BRL`)
             .then(async (axiosResponse) => {
                 const base = axiosResponse.data[0].totalBase.toFixed(2)
+                // Amount é a quantidade comprada em BRL
+                // Base é a quantidade comprada na moeda
                 await Transaction.create({
                     moeda: 'CUSD',
                     amount: req.body.amount,
@@ -26,10 +30,13 @@ export const pix = async (req, res) => {
                     date: Date.now()
                 });
 
+                const novoSaldo = await updateSaldo('CUSD', base, req.body.cpf)
+
                 const body = {
                     message: 'Moedas CUSD compradas com sucesso',
                     buy: req.body.amount,
-                    quantity: base
+                    quantity: base,
+                    balance: novoSaldo
                 }
 
                 return res.status(200).json(body)
@@ -50,10 +57,13 @@ export const pix = async (req, res) => {
                     date: Date.now()
                 });
 
+                const novoSaldo = await updateSaldo('MCO2', base, req.body.cpf)
+
                 const body = {
                     message: 'Moedas MCO2 compradas com sucesso',
                     buy: req.body.amount,
-                    quantity: base
+                    quantity: base,
+                    balance: novoSaldo
                 }
 
                 return res.status(200).json(body)
