@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const WithdrawSchema = mongoose.Schema(
   {
-    addres: {
+    address: {
         type: String,
         required: true
     },

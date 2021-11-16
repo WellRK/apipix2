@@ -13,8 +13,10 @@ export const withdraw = async (req, res) =>{
         return res.status(400).json({ message: error.message });
     }
 
-    const { address } = await User.findOne({ cpf: req.body.cpf })
+    const { address } = await User.findOne({ cpf: req.body.cpf }) // Unused Variable
     const { base } = await User.findOne({base: req.body.base })
+    // TODO: Criar campos address e base para todo novo usuário criado
+    // Cannot destructure property 'address' of '(intermediate value)' as it is null.
     const body = {
         message: 'Transaçao realizada com sucesso',
         address: req.body.address,
