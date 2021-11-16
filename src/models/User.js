@@ -6,12 +6,10 @@ const UserSchema = mongoose.Schema(
       type: String,
       require: false,
     },
-
     cpf: {
       type: String,
       required: false,
     },
-
     password: {
       type: String,
       required: false,

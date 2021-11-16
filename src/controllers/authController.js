@@ -1,6 +1,7 @@
 import { env } from "../env";
 import bcrypt from "bcrypt";
 import User from "../models/User";
+import Saldo from "../models/Saldo";
 import { RegisterSchema, LoginSchema } from "../schemas/authSchemas";
 const jwt = require('jsonwebtoken')
 
@@ -33,7 +34,15 @@ export const register = async (req, res, next) => {
     moeda: 'CUSD'
   });
 
+  const saldo = new Saldo({
+    cpf,
+    brl: 0,
+    cusd: 0,
+    mco2: 0
+  });
+  
   await User.create(celo);
+  await Saldo.create(saldo);
 
   res.status(201).json({ message: "Cadastrado com sucesso" });
 };
