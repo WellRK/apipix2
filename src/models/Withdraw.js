@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
-const TransactionSchema = mongoose.Schema(
+const WithdrawSchema = mongoose.Schema(
   {
-    moeda: {
+    addres: {
         type: String,
         required: true
     },
@@ -14,10 +14,6 @@ const TransactionSchema = mongoose.Schema(
         type: Number,
         required: true
     },
-    cpf: {
-      type: String,
-      required: true,
-    },
     date: {
       type: String,
       required: false,
@@ -28,6 +24,6 @@ const TransactionSchema = mongoose.Schema(
   }
 );
 
-const Transaction = mongoose.model('Transaction', TransactionSchema);
+const Withdraw = mongoose.model('Transaction', WithdrawSchema);
 
-module.exports = Transaction;
+module.exports = Withdraw;
