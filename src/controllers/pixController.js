@@ -30,7 +30,7 @@ export const pix = async (req, res) => {
                     date: Date.now()
                 });
 
-                const novoSaldo = await updateSaldo('cusd', base, req.body.cpf)
+                const novoSaldo = await updateSaldo('CUSD', base, req.body.cpf)
 
                 const body = {
                     message: 'Moedas CUSD compradas com sucesso',
@@ -57,7 +57,7 @@ export const pix = async (req, res) => {
                     date: Date.now()
                 });
 
-                const novoSaldo = await updateSaldo('mco2', base, req.body.cpf)
+                const novoSaldo = await updateSaldo('MCO2', base, req.body.cpf)
 
                 const body = {
                     message: 'Moedas MCO2 compradas com sucesso',

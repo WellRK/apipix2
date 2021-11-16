@@ -8,16 +8,16 @@ export const getSaldo = async (req, res) => {
         return res.status(400).json({ message: error.message });
     }
 
-    const { cusd, mco2 } = await Saldo.findOne({ cpf: req.body.cpf })
+    const { CUSD, MCO2 } = await Saldo.findOne({ cpf: req.body.cpf })
     const body = {
-        cusd,
-        mco2
+        CUSD,
+        MCO2
     }
     return res.status(200).json(body)
 }
 
 export const updateSaldo = async (currency, value, cpf) => {
-    if (currency != 'cusd' && currency != 'mco2') throw new Error('Moeda inválida')
+    if (currency != 'CUSD' && currency != 'MCO2') throw new Error('Moeda inválida')
 
     const saldoAnterior = await Saldo.findOne({ cpf }); // objeto contendo cpf, brl, cusd, mco2
     let novoSaldo = saldoAnterior[currency] + Number(value)

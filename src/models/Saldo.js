@@ -6,15 +6,15 @@ const SaldoSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    brl: {
+    BRL: {
       type: Number,
       required: true,
     },
-    cusd: {
+    CUSD: {
       type: Number,
       required: true,
     },
-    mco2: {
+    MCO2: {
       type: Number,
       required: true,
     },

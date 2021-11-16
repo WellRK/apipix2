@@ -36,9 +36,9 @@ export const register = async (req, res, next) => {
 
   const saldo = new Saldo({
     cpf,
-    brl: 0,
-    cusd: 0,
-    mco2: 0
+    BRL: 0,
+    CUSD: 0,
+    MCO2: 0
   });
   
   await User.create(celo);
