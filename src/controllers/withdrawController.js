@@ -1,4 +1,4 @@
-import { PixSchema } from "../schemas/pixSchema";
+
 import { WithdrawSchema } from "../schemas/withdrawSchema";
 import User from "../models/User";
 import Withdraw from "../models/Withdraw";
@@ -17,7 +17,7 @@ export const withdraw = async (req, res) =>{
     const { base } = await User.findOne({base: req.body.base })
     const body = {
         message: 'Transaçao realizada com sucesso',
-        address: re.body.address,
+        address: req.body.address,
         cpf: req.body.cpf,
         base: base,
         date: Date.now()

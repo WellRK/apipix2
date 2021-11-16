@@ -24,6 +24,6 @@ const WithdrawSchema = mongoose.Schema(
   }
 );
 
-const Withdraw = mongoose.model('Transaction', WithdrawSchema);
+const Withdraw = mongoose.model('Transderencia', WithdrawSchema);
 
 module.exports = Withdraw;
