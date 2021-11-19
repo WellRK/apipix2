@@ -1,5 +1,6 @@
 import { SaldoSchema } from "../schemas/saldoSchema";
 import Saldo from "../models/Saldo";
+
 import { getToken } from "./authChecker";
 
 export const getSaldo = async (req, res) => {
@@ -13,6 +14,7 @@ export const getSaldo = async (req, res) => {
     console.log(user)
 
     const { CUSD, MCO2 } = await Saldo.findOne({ cpf: user.cpf })
+
     const body = {
         CUSD,
         MCO2
