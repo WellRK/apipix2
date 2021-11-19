@@ -1,14 +1,20 @@
 import { SaldoSchema } from "../schemas/saldoSchema";
 import Saldo from "../models/Saldo";
 
+import { getToken } from "./authChecker";
+
 export const getSaldo = async (req, res) => {
-    try {
+    /* try {
         await SaldoSchema.validateAsync(req.body)
     } catch (error) {
         return res.status(400).json({ message: error.message });
-    }
+    } */
 
-    const { CUSD, MCO2 } = await Saldo.findOne({ cpf: req.body.cpf })
+    const user = getToken(req)
+    console.log(user)
+
+    const { CUSD, MCO2 } = await Saldo.findOne({ cpf: user.cpf })
+
     const body = {
         CUSD,
         MCO2

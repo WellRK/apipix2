@@ -75,6 +75,8 @@ export const login = async (req, res) => {
   const token = jwt.sign(
     {
       id: user._id,
+      email: user.email,
+      cpf: user.cpf
     },
     env.JWT_SECRET
   );
@@ -83,12 +85,13 @@ export const login = async (req, res) => {
 };
 
 export const moeda = async (req, res) => {
-  // Passe moeda e cpf no body
+  // Passe moeda no body
+
+  const user = getToken(req)
 
   if (req.body.moeda != 'CUSD' && req.body.moeda != 'MCO2') return res.status(400).json({ message: `Moeda Inválida`})
-  const user = await User.findOne({ cpf: req.body.cpf });
 
-  await User.updateOne({ cpf: req.body.cpf }, { $set: { moeda: req.body.moeda } })
+  await User.updateOne({ cpf: user.cpf }, { $set: { moeda: req.body.moeda } })
 
   return res.status(201).json({ message: `Moeda padrão alterada para ${req.body.moeda}`})
 }
