@@ -27,7 +27,7 @@ export const getSaldo = async (req, res) => {
     const body = {
         CUSD,
         MCO2,
-        totalinbrl: `${((CUSD * usdtPrice) + (MCO2 * mco2Price)).toFixed(2)}`
+        totalinbrl: (CUSD * usdtPrice) + (MCO2 * mco2Price),
     }
     return res.status(200).json(body)
 }
